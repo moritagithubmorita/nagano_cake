@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     :registrations => 'public/registrations'
   }
 
-  devise_for :admins, :controllers => {
+  devise_for :admin, :controllers => {
     :sessions => 'admin/sessions'
   }
 
@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     resources :order_items, only: [:update]
   end
 
-  get '/admin' => "homes#top"
+  get '/admin' => "admin/homes#top"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/search' => "admin/searchs#search", as: 'admin_search'
 end

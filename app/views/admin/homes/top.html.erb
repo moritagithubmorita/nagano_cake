@@ -1,2 +1,12 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <% if !@from_customer_show %>
+        <%= render partial: 'all_orders', locals:{orders: @orders} %> 
+      <% else %>
+        <%= render partial: 'customer_orders', locals:{orders: @orders, customer: @customer} %>
+      <% end %>
+    </div>
+    <%= paginate @orders %>
+  </div>
+</div>

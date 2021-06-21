@@ -1,2 +1,8 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2>商品新規登録</h2>
+    <div class="col-lg-10 mx-auto">
+      <%= render partial: 'items_form', locals:{item: @item, text: '新規登録'} %>
+    </div>
+  </div>
+</div>

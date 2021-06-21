@@ -1,0 +1,7 @@
+  <div>  
+    <%= form.with model: genre, url: '/admin/genres', local: true do |f| %>
+      <%= f.label 'ジャンル名' %>
+      <%= f.text_field :name %>
+      <%= f.submit text %>
+    <% end %>
+  </div>
