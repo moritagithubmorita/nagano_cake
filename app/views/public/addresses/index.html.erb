@@ -1,2 +1,50 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2>配送先登録/一覧</h2>
+    <div class="col-lg-10">
+      <%= form_with model: @address, url: '/addresses', local:true do |f| %>
+      <table class="table table-striped">
+        <tr>
+          <td>郵便番号(ハイフンなし)</td>
+          <td><%= f.text_field :postal_code %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= f.text_field :address %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>宛名</td>
+          <td><%= f.text_field :name %></td>
+          <td><%= f.submit '新規登録' %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+            <tr>
+              <td><%= address.postal_code %></td>
+              <td><%= address.address %></td>
+              <td><%= address.name %></td>
+              <td><%= link_to '編集する', edit_address_path(address.id) %> <%= link_to '削除する', "/addresses/#{address.id}", method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

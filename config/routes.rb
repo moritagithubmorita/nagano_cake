@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :addresses, except: [:new, :show]
     resources :orders, except: [:destroy, :update, :edit]
     resources :cart_items, only: [:index, :update, :destroy, :create]
-    resources :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:show, :edit, :update]
     resources :items, only: [:index, :show]
   end
 
@@ -39,5 +39,5 @@ Rails.application.routes.draw do
   get '/admin' => "admin/homes#top"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/search' => "admin/searchs#search", as: 'admin_search'
+  get '/search' => "public/items#search", as: 'search'
 end

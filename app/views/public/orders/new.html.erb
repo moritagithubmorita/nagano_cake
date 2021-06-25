@@ -1,2 +1,40 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2>注文情報入力</h2>
+    <div class="col-lg-10">
+      <%= form_with model:@order, url: orders_confirm_path, local:true do |f| %>
+      <div>
+        <label>支払い方法</label>
+        <%= f.radio_button :payment, 0, class:"form-control" %><label>クレジットカード</label>
+        <%= f.radio_button :payment, 1, class:"form-control" %><label>銀行振込</label>
+      </div>
+      <% end %>
+      <div>
+        <label>お届け先</label>
+        <%= f.radio_button :selected_address, 0, class:"form-control" %><label>ご自身の住所</label><br>
+        <%= current_customer.address %><br>
+        <%= current_customer.last_name %><%= current_customer.first_name %><br>
+
+        <%= f.radio_button :selected_address, 1, class:"form-control" %><label>登録済住所から選択</label><br>
+        <%= f.select :address_name_hash, @address_name_hash, class:"form-control" %><br>
+
+        <%= f.radio_button :selected_address, 2, class:"form-control" %><label>新しいお届け先</label>
+        <table class="table table-striped">
+          <tr>
+            <td>郵便番号(ハイフンなし)</td>
+            <td><%= f.text_field :postal_code, class:"form-control" %></td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address, class:"form-control" %></td>
+          </tr>
+          <tr>
+            <td>宛名</td>
+            <td><%= f.text_field :name, class:"form-control" %></td>
+          </tr>
+        </table>
+      </div>
+      <%= f.submit '確認画面へ進む', class:"form-control" %>
+    </div>
+  </div>
+</div>

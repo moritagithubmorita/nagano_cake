@@ -1,2 +1,71 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% total = 0 %>
+    <h2>注文情報確認</h2>
+    <div class="col-lg-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <% item = Item.find(cart_item.item_id) %>
+              <td><%= attachment_image_tag item, :image %><%= item.name %></td>
+              <td><%= cart_item.amount %></td>
+              <td>
+                <% total += item.price*1.08*cart_item.amount %>
+                <%= "#{item.price*1.08*cart_item.amount.to_s(:delimited)}" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-4">
+      <table class="table table-striped">
+        <tr>
+          <td>送料</td>
+          <td><%= @order.shipping_cost %></td>
+        </tr>
+        <tr>
+          <td>商品合計</td>
+          <td><%= "#{total.to_s(:delimited)}" %></td>
+        </tr>
+        <tr>
+          <td>請求金額</td>
+          <% total += SHIPPING_COST %>
+          <td><%= "#{total.to_s(:delimited)}" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-striped">
+      <tr>
+        <td>支払い方法</td>
+        <% if @order.credit? %>
+          <td>クレジットカード</td>
+        <% elsif @order.bank? %>
+          <td>銀行振込</td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>お届け先</td>
+        <td>
+          <p>
+            〒<%= @order.postal_code %> <%= @order.address %><br>
+            <%= @order.name %>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <%= link_to '注文を確定する', '/orders', method: :post
+  </div>
+</div>

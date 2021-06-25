@@ -1,2 +1,46 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<%#マイページ%>
+<div class="container">
+  <div class="row">
+    <h2>マイページ</h2>
+    <div class="col-lg-10">
+      <label>会員情報</label>
+      <%= link_to '編集する', edit_customers_path %>
+      <table class="table table-striped">
+        <tr>
+          <td>氏名</td>
+          <td><label><%= current_customer.last_name %> <%= current_customer.first_name %></td>
+        </tr>
+        <tr>
+          <td>カナ</td>
+          <td><label><%= current_customer.last_name_kana %> <%= current_customer.first_name_kana %></label></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= current_customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= current_customer.address %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= current_customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= current_customer.email %></td>
+        </tr>
+      </table>
+      <table class="table table-striped">
+        <tr>
+          <td>配送先</td>
+          <td><%= link_to '一覧を見る', addresses_path %></td>
+        </tr>
+        <tr>
+          <td>注文履歴</td>
+          <td><%= link_to '一覧を見る', orders_path %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

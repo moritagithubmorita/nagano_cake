@@ -18,26 +18,32 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="button-target">
-          <ul class="navbar-nav ml-auto">
-            <% if !admin_signed_in? && !customer_signed_in? %>
+          <% if !admin_signed_in? && !customer_signed_in? %>
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item"><%= link_to 'About', '/about' %></li>
               <li class="nav-item"><%= link_to '商品一覧', '/items' %></li>
               <li class="nav-item"><%= link_to '新規登録', '/customers/sign_up' %></li>
               <li class="nav-item"><%= link_to 'ログイン', '/customers/sign_in' %></li>
-            <% elsif admin_signed_in? %>
+            </ul>
+          <% elsif admin_signed_in? %>
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item"><%= link_to '商品一覧', '/admin/items' %></li>
               <li class="nav-item"><%= link_to '会員一覧', '/admin/customers' %></li>
-              <li class="nav-item"><%= link_to '注文履歴一覧', '/admin' %></li>
+              <li class="nav-item"><%= link_to '注文履歴一覧', admin_path %></li>
               <li class="nav-item"><%= link_to 'ジャンル一覧', '/admin/genres' %></li>
               <li class="nav-item"><%= link_to 'ログアウト', '/admin/sign_out' %></li>
-            <% else %>
+            </ul>
+          <% else %>
+            <label>ようこそ、<%= current_customer.last_name %>さん!</label>
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item"><%= link_to 'マイページ', "/customers/#{current_customer.id}" %></li>
               <li class="nav-item"><%= link_to '商品一覧', '/items' %></li>
               <li class="nav-item"><%= link_to 'カート', '/cart_items' %></li>
               <li class="nav-item"><%= link_to 'ログアウト', '/customers/sign_out' %></li>
-            <% end %>
-          </ul>
+            </ul>
+          <% end %>
         </div>
+        <label>ジャンル検索</label>
         <%= form_tag(search_path, :method => 'get') do %>
           <%= text_field_tag :search %>
           <%= submit_tag 'Search', :name => nil %>

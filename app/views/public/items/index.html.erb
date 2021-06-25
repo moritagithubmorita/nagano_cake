@@ -1,2 +1,21 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class="container">
+  <div>  
+    <h2><%= @title %><label>(全<%= @items.count %>件)</label></h2>
+  </div>
+  <div>
+    <% @items.each do |item| %>
+      <div class="card shadow-sm">
+        <div class="card-img-top">
+          <%= attachment_image_tag item :image %>
+        </div>
+        <div class="card-body">
+          <div class="card-title"><%= item.name %></div>
+          <div class="card-text"><%= item.introduction %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= paginate @items %>
+  </div>
+</div>
