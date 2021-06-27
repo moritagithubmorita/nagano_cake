@@ -39,7 +39,7 @@
               <li class="nav-item"><%= link_to 'マイページ', "/customers/#{current_customer.id}" %></li>
               <li class="nav-item"><%= link_to '商品一覧', '/items' %></li>
               <li class="nav-item"><%= link_to 'カート', '/cart_items' %></li>
-              <li class="nav-item"><%= link_to 'ログアウト', '/customers/sign_out' %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', '/customers/sign_out', method: :delete %></li>
             </ul>
           <% end %>
         </div>

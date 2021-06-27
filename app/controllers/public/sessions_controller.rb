@@ -7,13 +7,14 @@ class Public::SessionsController < Devise::SessionsController
   #退会済み顧客
   def loginable_check
     #入力メアドとパスワードに合致するCustomerを検索
-    customer = Customer.find_by(email: params[:email], password: params[:password])
+    encrypted_password = Customer.new(email: params[:email], password: params[:password]).encrypted_password
+    customer = Customer.find_by(email: params[:email], encrypted_password: encrypted_password)
     #退会済み顧客だった場合
     if (customer && !customer.is_active)
       redirect_to new_customer_registration_path
     end
   end
-  
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
