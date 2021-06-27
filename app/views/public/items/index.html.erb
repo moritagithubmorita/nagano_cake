@@ -1,18 +1,20 @@
 <div class="container">
-  <div>  
+  <div>
     <h2><%= @title %><label>(全<%= @items.count %>件)</label></h2>
   </div>
   <div>
     <% @items.each do |item| %>
-      <div class="card shadow-sm">
-        <div class="card-img-top">
-          <%= attachment_image_tag item :image %>
+      <%= link_to item_path(item.id) do %>
+        <div class="card shadow-sm">
+          <div class="card-img-top">
+            <%= attachment_image_tag item :image %>
+          </div>
+          <div class="card-body">
+            <div class="card-title"><%= item.name %></div>
+            <div class="card-text"><%= item.introduction %></div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-title"><%= item.name %></div>
-          <div class="card-text"><%= item.introduction %></div>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
   <div>

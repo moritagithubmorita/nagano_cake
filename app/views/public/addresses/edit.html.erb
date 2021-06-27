@@ -2,6 +2,11 @@
   <div class="row">
     <h2>配送先編集</h2>
     <div class="col-lg-10">
+      
+      <% if @edited_address.errors.any? %>
+        <%= render 'admin/errors/error', locals: {model: @edited_address} %>
+      <% end %>
+      
       <%= form_with model: @address, url: address_path(@address.id), local:true do |f| %>
         <table class="table table-striped">
           <tr>

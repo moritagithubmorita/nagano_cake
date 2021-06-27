@@ -2,6 +2,11 @@
   <div class="row">
     <h2>注文情報入力</h2>
     <div class="col-lg-10">
+      
+      <% if @generated_order.errors.any? %>
+        <%= render 'admin/errors/error', locals: {model: @generated_order} %>
+      <% end %>
+      
       <%= form_with model:@order, url: orders_confirm_path, local:true do |f| %>
       <div>
         <label>支払い方法</label>

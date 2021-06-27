@@ -16,15 +16,17 @@
       <h2>新着商品</h2>
       <div>
         <% @items.each do |item| %>
-          <div class="card mx-auto shadow-sm">
-            <div class="card-body">
-              <%= attachment_image_tag item, :image, class:"card-img-top" %>
-              <p class="card-text">
-                <%= item.name %><br>
-                <%= "#{number_to_currency(item.price*1.08, unit: "¥", precision: 0)}" %>
-              </p>
+          <%= link_to item_path(item.id) do %>
+            <div class="card mx-auto shadow-sm">
+              <div class="card-body">
+                <%= attachment_image_tag item, :image, class:"card-img-top" %>
+                <p class="card-text">
+                  <%= item.name %><br>
+                  <%= "#{number_to_currency(item.price*1.08, unit: "¥", precision: 0)}" %>
+                </p>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>

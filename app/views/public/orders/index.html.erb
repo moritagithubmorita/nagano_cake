@@ -23,10 +23,10 @@
                 <%= order.name %>
               </td>
               <td>
-                <% order_items = @order.order_items.all %>
+                <% order_items = order.order_items.all %>
                 <% length = order_items.count %>
                 <% count = 0 %>
-                <% order_item.each do |order_item| %>
+                <% order_items.each do |order_item| %>
                   <%= Item.find(order_item.item_id).name %>
                   <% if ++count < length %>
                     <br>
@@ -34,10 +34,10 @@
                 <% end %>
               </td>
               <td>
-                <%= "#{number_to_currency(@order.billing_amount, format: "%u%n", unit: "¥")}" %>
+                <%= "#{number_to_currency(order.billing_amount, format: "%u%n", unit: "¥")}" %>
               </td>
-              <td><%= @order.enum_i18n(:order_status) %></td>
-              <td><%= link_to '表示する', order_path(@order.id) %></td>
+              <td><%= order.enum_i18n(:order_status) %></td>
+              <td><%= link_to '表示する', order_path(order.id) %></td>
             </tr>
           <% end %>
         </tbody>

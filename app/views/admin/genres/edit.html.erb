@@ -2,6 +2,11 @@
   <div class="row">
     <label>ジャンル編集</label>
     <div class="col-lg-5">
+      
+      <% if @generated_genre.errors.any? %>
+        <%= render 'admin/errors/error', locals: {model: @generated_genre} %>
+      <% end %>
+      
       <%= render partial: 'genres_form', locals:{genre: @genre, text: '変更を保存'} %>
     </div>
   </div>

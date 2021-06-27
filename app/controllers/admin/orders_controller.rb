@@ -12,6 +12,8 @@ class Admin::OrdersController < ApplicationController
         OrderItems.update_making_status(order_item, :wait)
       end
     end
+
+    redirect_to admin_order_path(order.id)
   end
 
   def self.update_order_status(order)

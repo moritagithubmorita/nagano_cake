@@ -18,7 +18,7 @@
           <% order_items.each do |order_item| %>
             <% amount += order_item.amount %>
           <% end %>
-          <td><%= l order.created_at %></td>
+          <td><%= link_to admin_order_path(order.id) do %><%= l order.created_at %><% end %></td>
           <td><%= customer.last_name %><%= customer.first_name %></td>
           <td><%= amount %></td>
           <td><%= order.enum_i18n(:order) %></td>

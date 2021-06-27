@@ -2,6 +2,11 @@
   <div class="row">
     <h2>商品新規登録</h2>
     <div class="col-lg-10 mx-auto">
+
+      <% if @added_item.errors.any? %>
+        <%= render 'admin/errors/error', locals: {model: @added_item} %>
+      <% end %>
+
       <%= render partial: 'items_form', locals:{item: @item, text: '新規登録'} %>
     </div>
   </div>

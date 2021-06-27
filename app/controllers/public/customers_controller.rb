@@ -6,8 +6,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    current_customer.update(customer_params)
-    redirect_to customers_path
+    @edited_customer = current_customer
+    if @edited_customer.update(customer_params)
+      redirect_to customers_path
+    else
+      render edit
+    end
   end
 
   def confirm
@@ -16,6 +20,9 @@ class Public::CustomersController < ApplicationController
   #退会処理
   def widhdraw
     current_customer.update(is_active: false)
+    
+    #ログアウト
+    redirect_to destroy_customer_session_path
   end
 
   private

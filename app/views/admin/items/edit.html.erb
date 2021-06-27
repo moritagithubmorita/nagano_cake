@@ -2,6 +2,11 @@
   <div class="row">
     <h2>商品編集</h2>
     <div class="col-lg-10">
+      
+      <% if @added_item.errors.any? %>
+        <%= render 'admin/errors/error', locals: {model: @added_item} %>
+      <% end %>
+      
       <%= render partial: 'items_form', locals:{item: @item, text: '変更を保存'} %>
     </div>
   </div>

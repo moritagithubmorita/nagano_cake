@@ -1,0 +1,6 @@
+<div>
+  <h2><%= pluralize(model.errors.count, 'error') %>があります。正しく入力してください。 </h2>
+  <% model.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+</div>

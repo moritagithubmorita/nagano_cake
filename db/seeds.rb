@@ -1,3 +1,10 @@
+# coding: utf-8
+Genre.create(name: 'ケーキ')
+Genre.create(name: 'プリン')
+Genre.create(name: '焼き菓子')
+Genre.create(name: 'キャンディ')
+Admin.create(email: 'firstadmin@gmail.com', password: '00000000')
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
