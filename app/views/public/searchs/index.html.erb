@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <h2>検索結果</h2>
+    <div class="col-lg-10">
+      <% if @genres != nil && @genres.count != 0 %>
+        <label>ジャンル名一致</label>
+        <% @genres.each do |name, items| %>
+          <label><%= name %></label>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>商品名</th>
+                <th>商品説明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% items.each do |item| %>
+                <tr>                    
+                  <td>
+                    <% if !admin_signed_in? %>
+                      <%= link_to item.name, item_path(item.id) %>
+                    <% else %>
+                      <%= link_to item.name, admin_item_path(item.id) %>
+                    <% end %>
+                    </td>
+                  <td><%= item.introduction %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      <% end %>
+      <% if @items != nil && @items.count != 0 %>
+        <label>商品名一致</label>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>商品名</th>
+              <th>商品説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @items.each do |item| %>
+              <tr>                    
+                <td>
+                  <% if !admin_signed_in? %>
+                    <%= link_to item.name, item_path(item.id) %>
+                  <% else %>
+                    <%= link_to item.name, admin_item_path(item.id) %>
+                  <% end %>
+                </td>
+                <td><%= item.introduction %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>  
+      <% if admin_signed_in? && @customers != nil && @customers.count != 0%>
+        <label>会員名一致</label>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>会員名</th>
+              <th>メールアドレス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @customers.each do |customer| %>
+              <tr>                    
+                <td>
+                  <%= link_to admin_customer_path(customer.id) do %>
+                    <%= customer.last_name %><%= customer.first_name%><br>
+                    <%= customer.last_name_kana %><%= customer.first_name_kana %>
+                  <% end %>
+                </td>
+                <td><%= customer.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

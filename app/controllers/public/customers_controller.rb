@@ -3,14 +3,15 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
+    @customer = current_customer
   end
 
   def update
-    @edited_customer = current_customer
-    if @edited_customer.update(customer_params)
+    @customer = current_customer
+    if @customer.update(customer_params)
       redirect_to customers_path
     else
-      render edit
+      render :edit
     end
   end
 
@@ -20,9 +21,12 @@ class Public::CustomersController < ApplicationController
   #退会処理
   def widhdraw
     current_customer.update(is_active: false)
-    
+
     #ログアウト
-    redirect_to destroy_customer_session_path
+    reset_session
+    #手動でリダイレクト
+    redirect_to root_path
+
   end
 
   private

@@ -4,11 +4,10 @@ class Public::SessionsController < Devise::SessionsController
   #退会顧客がログインできないようにする
   before_action :loginable_check, only: [:create]
 
-  #退会済み顧客
+  #退会済み顧客のログインを阻止する処理
   def loginable_check
-    #入力メアドとパスワードに合致するCustomerを検索
-    encrypted_password = Customer.new(email: params[:email], password: params[:password]).encrypted_password
-    customer = Customer.find_by(email: params[:email], encrypted_password: encrypted_password)
+    #入力メアドと合致するCustomerを検索
+    customer = Customer.find_by(email: params[:customer][:email])
     #退会済み顧客だった場合
     if (customer && !customer.is_active)
       redirect_to new_customer_registration_path
@@ -28,9 +27,9 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  #def destroy
+    #super
+  #end
 
   # protected
 
@@ -38,4 +37,5 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
 end

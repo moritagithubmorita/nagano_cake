@@ -16,7 +16,13 @@
         <%= form_with model: @cart_item, url: '/cart_items', local:true do |f| %>
           <%= f.select :amount, [[1,1],[2,2],[3,3],[4,4],[5,5]] %>
           <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.hidden_field :customer_id, value: current_customer.id %>
+          <% value = 0 %>
+          <%# 未ログインエラー回避 %>
+          <% if current_customer %>
+            <% value = current_customer.id %>
+            <%= f.hidden_field :customer_id, value: value %>
+          <% end %>
+          <%# ログインしてなければログイン画面に飛ぶ %>
           <%= f.submit 'カートに入れる' %>
         <% end %>
       </div>

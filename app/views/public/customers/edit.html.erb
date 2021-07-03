@@ -1,17 +1,15 @@
 <div class="container">
   <div class="row">
     <h2>会員情報更新</h2>
+    <% if @customer.errors.any? %>
+      <%= render partial: 'admin/errors/error', locals: {model: @customer} %>
+    <% end %>
     <div class="col-lg-10">
-      <table class="table table-striped">
-        
-        <% if @edited_customer.errors.any? %>
-        <%= render partial: 'admin/errors/error', locals: {model: @edited_customer} %>
-        <% end %>
-        
-        <%= form_with model: current_customer, url: '/customers', local:true do |f| %>
+      <%= form_with model: current_customer, url: '/customers', local:true, method: :patch do |f| %>
+        <table class="table table-striped">
           <tr>
             <td><label>氏名</label></td>
-            <td><%= f.text_field :last_name %> <%= f.text_field :firlst_name %></td>
+            <td><%= f.text_field :last_name %> <%= f.text_field :first_name %></td>
           </tr>
           <tr>
             <td><label>フリガナ</label></td>
@@ -33,11 +31,11 @@
             <td>メールアドレス</td>
             <td><%= f.email_field :email %></td>
           </tr>
-          <div>
-            <%= f.submit '編集内容を保存' %> <%= link_to '退会する', customers_confirm_path %>
-          </div>
-        <% end %>
-      </table>
+        </table>
+        <div>
+          <%= f.submit '編集内容を保存' %> <%= link_to '退会する', customers_confirm_path %>
+        </div>
+       <% end %>
     </div>
   </div>
 </div>

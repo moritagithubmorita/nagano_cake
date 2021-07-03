@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get '/admin' => "admin/homes#top"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/search' => "public/items#search", as: 'search'
+  get '/search' => "public/searchs#index", as: 'search'
 
   namespace :admin do
     resources :items, except: [:destroy]

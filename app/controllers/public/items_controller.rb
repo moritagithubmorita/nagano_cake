@@ -3,7 +3,7 @@ class Public::ItemsController < ApplicationController
 
   def index
     @title = '商品一覧'
-    @items = Item.all.order("id DESC").page(params[:page]).per(8)
+    @items = Item.where(is_active: true).order("id DESC").page(params[:page]).per(8)
   end
 
   def show
@@ -11,16 +11,16 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new
   end
 
-  def search
-    key = params[:search]
-    if key
-      @items = Item.where(genre: key)&.order("id DESC").page(params[:page]).per(8)
-      @title = "#{key}一覧"
-    else
-      @items = Item.all.order("id DESC").page(params[:page]).per(8)
-      @title = "商品一覧"
-    end
+  #def search
+   # key = params[:search]
+    #if key
+     # @items = Item.where(genre: key, is_active: true)&.order("id DESC").page(params[:page]).per(8)
+      #@title = "#{key}一覧"
+    #else
+     # @items = Item.where(is_active: true).order("id DESC").page(params[:page]).per(8)
+      #@title = "商品一覧"
+    #end
 
-    render :index
-  end
+    #render :index
+  #end
 end

@@ -43,9 +43,9 @@
             </ul>
           <% end %>
         </div>
-        <label>ジャンル検索</label>
+        <label>検索</label>
         <%= form_tag(search_path, :method => 'get') do %>
-          <%= text_field_tag :search %>
+          <%= text_field_tag :key %>
           <%= submit_tag 'Search', :name => nil %>
         <% end %>
       </div>
