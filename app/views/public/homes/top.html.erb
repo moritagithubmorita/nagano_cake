@@ -19,10 +19,10 @@
           <%= link_to item_path(item.id) do %>
             <div class="card mx-auto shadow-sm">
               <div class="card-body">
-                <%= attachment_image_tag item, :image, class:"card-img-top" %>
+                <%= attachment_image_tag item, :image, :fill, 40, 40, fallback: 'no_image.png', size: '40x40', class:"card-img-top" %>
                 <p class="card-text">
                   <%= item.name %><br>
-                  <%= "#{number_to_currency(item.price*1.08, unit: "¥", precision: 0)}" %>
+                  <%= "#{number_to_currency(item.price*1.08.floor, unit: "¥", precision: 0)}" %>
                 </p>
               </div>
             </div>

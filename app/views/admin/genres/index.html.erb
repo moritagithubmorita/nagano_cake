@@ -2,24 +2,24 @@
   <div class="row">
     <label>ジャンル一覧・追加</label>
     <div class="col-lg-5">
-      
+
       <% if @generated_genre.errors.any? %>
         <%= render 'admin/errors/error', locals: {model: @generated_genre} %>
       <% end %>
-      
-      <%= render partial: 'genres_form', locals:{genre: @genre, text: '新規登録'} %>
+
+      <%= render partial: 'genres_form', locals:{genre: @genre, url: '/admin/genres', text: '新規登録'} %>
 
       <table class="table table-striped">
         <thead>
           <tr>
             <th>ジャンル</th>
           </tr>
-          <tr>
-            <% Genre.all.each do |genre| %>
+          <% Genre.all.each do |genre| %>
+            <tr>
               <td><%= genre.name %></td>
               <td><%= link_to '編集する', edit_admin_genre_path(genre.id) %></td>
-            <% end %>
-          </tr>
+            </tr>
+          <% end %>
         </thead>
       </table>
     </div>

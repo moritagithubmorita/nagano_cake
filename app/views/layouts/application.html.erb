@@ -31,12 +31,12 @@
               <li class="nav-item"><%= link_to '会員一覧', '/admin/customers' %></li>
               <li class="nav-item"><%= link_to '注文履歴一覧', admin_path %></li>
               <li class="nav-item"><%= link_to 'ジャンル一覧', '/admin/genres' %></li>
-              <li class="nav-item"><%= link_to 'ログアウト', '/admin/sign_out' %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
             </ul>
           <% else %>
             <label>ようこそ、<%= current_customer.last_name %>さん!</label>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><%= link_to 'マイページ', "/customers/#{current_customer.id}" %></li>
+              <li class="nav-item"><%= link_to 'マイページ', customers_path %></li>
               <li class="nav-item"><%= link_to '商品一覧', '/items' %></li>
               <li class="nav-item"><%= link_to 'カート', '/cart_items' %></li>
               <li class="nav-item"><%= link_to 'ログアウト', '/customers/sign_out', method: :delete %></li>

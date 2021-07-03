@@ -4,10 +4,10 @@
     <div class="col-lg-10 mx-auto">
 
       <% if @added_item.errors.any? %>
-        <%= render 'admin/errors/error', locals: {model: @added_item} %>
+        <%= render partial: 'admin/errors/error', locals: {model: @added_item} %>
       <% end %>
 
-      <%= render partial: 'items_form', locals:{item: @item, text: '新規登録'} %>
+      <%= render partial: 'items_form', locals:{item: @item, url: '/admin/items', text: '新規登録'} %>
     </div>
   </div>
 </div>

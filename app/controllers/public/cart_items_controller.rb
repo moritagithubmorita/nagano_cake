@@ -14,18 +14,30 @@ class Public::CartItemsController < ApplicationController
     redirect_to cart_items_path
   end
 
-  def self.remove_all
+  def remove_all
     #ログインユーザーの全カートアイテムを削除。
-    #コントローラのクラスメソッドにしたのは、モデルを管理するのはコントローラであるという方針に則るため。モデルに作っても良かった。
-    current_customer.cart_items.all.destroy_all
+    current_customer.cart_items.destroy_all
     redirect_to cart_items_path
   end
 
   def create
-    cart_item = CartItem.new(cart_item_params)
-    cart_item.customer_id = current_customer.id
-    cart_item.save
+    cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+    #カートに初めて登録された場合
+    if cart_item == nil
+      CartItem.create(cart_item_params)
+    #すでにカートに入っていた場合
+    else
+      cart_item.update(cart_item_params)
+    end
+
     redirect_to cart_items_path
+  end
+
+  def self.to_order_item(order_id, current_customer)
+    current_customer.cart_items.all.each do |cart_item|
+      order_item = OrderItem.new(order_id: order_id, item_id: cart_item.item_id, amount: cart_item.amount, order_price: Item.find(cart_item.item_id).price, making_status: :impossible)
+      order_item.save
+    end
   end
 
   private

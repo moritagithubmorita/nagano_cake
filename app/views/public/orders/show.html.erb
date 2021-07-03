@@ -65,7 +65,7 @@
             <tr>
               <% item = Item.find(order_item.item_id) %>
               <td><%= item.name %></td>
-              <% taxed = item.price*1.08 %>
+              <% taxed = item.price*1.08.floor %>
               <td><%= "#{taxed.to_s(:delimited)}" %></td>
               <td><%= order_item.amount %></td>
               <td><%= "#{(taxed*order_item.amount).to_s(:delimited)}" %></td>

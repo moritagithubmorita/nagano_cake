@@ -6,7 +6,7 @@
         <tr>
           <td>購入者</td>
           <% customer = Customer.find(@order.customer_id) %>
-          <td><%= link_to admin_customer_paths(customer.id) do %><%= customer.last_name %> <%= customer.first_name %></td>
+          <td><%= link_to admin_customer_path(customer.id) do %><%= customer.last_name %> <%= customer.first_name %><% end %></td>
         </tr>
         <tr>
           <td>注文日</td>
@@ -27,13 +27,13 @@
           <% elsif @order.bank? %>
             <% payment='銀行振込' %>
           <% end %>
-          <td><% payment %></td>
+          <td><%= payment %></td>
         </tr>
         <tr>
           <td>注文ステータス</td>
           <td>
             <%= form_with model: @order, url: "/admin/orders/#{@order.id}", local:true do |f| %>
-              <%= f.select :order_status, Order.enums_i18n(:order_status), class:"form-control" %>
+              <%= f.select :order_status, Order.enums_i18n(:order_status), {selected: @order.order_status_before_type_cast}, {class:"form-control"} %>
               <%= f.submit '更新', class:"form-control" %>
             <% end %>
           </td>
@@ -57,14 +57,14 @@
         <tbody>
           <% @order.order_items.all.each do |order_item| %>
             <tr>
-              <td><%= order_item.name %></td>
-              <td><%= order_item.order_price %></td>
+              <td><%= "#{Item.find(order_item.item_id).name}" %></td>
+              <td><%= "#{(order_item.order_price*1.08).floor.to_s(:delimited)}"  %></td>
               <td><%= order_item.amount %></td>
-              <% total += subtotal = order_item.order_price * order_item.amount * 1.08 %>
+              <% total += subtotal = (order_item.order_price * (order_item.amount) * 1.08).floor %>
               <td><%= subtotal %></td>
               <td>
                 <%= form_with model: order_item, url: admin_order_item_path(order_item.id), local:true do |f| %>
-                  <%= f.select :making_status, OrderItem.enums_i18n(:making_status), class:"form-control" %>
+                  <%= f.select :making_status, OrderItem.enums_i18n(:making_status), {selected: order_item.making_status_before_type_cast}, {class:"form-control"} %>
                   <%= f.submit '更新', class:"form-control" %>
                 <% end %>
               </td>

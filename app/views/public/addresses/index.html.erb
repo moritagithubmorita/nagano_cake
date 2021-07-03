@@ -4,7 +4,7 @@
     <div class="col-lg-10">
       
       <% if @added_address.errors.any? %>
-        <%= render 'admin/errors/error', locals: {model: @added_address} %>
+        <%= render partial: 'admin/errors/error', locals: {model: @added_address} %>
       <% end %>
       
       <%= form_with model: @address, url: '/addresses', local:true do |f| %>

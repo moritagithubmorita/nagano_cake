@@ -2,6 +2,7 @@
   <% total = 0 %>
   <div class="row">
     <h2>ショッピングカート</h2>
+    <%= alert %>
     <%= link_to 'カートを空にする', cart_items_remove_all_path, method: :delete %>
   </div>
   <div class="row">
@@ -19,13 +20,13 @@
         <tbody>
           <% @cart_items.each do |cart_item| %>
             <tr>
+              <% item = Item.find(cart_item.item_id) %>
               <td>
-                <% item = Item.find(cart_item.item_id) %>
-                <%= attachment_image_tag item, :image %>
+                <%= attachment_image_tag item, :image, :fill, 40, 40, fallback: 'no_image.png', size: '40x40' %>
                 <%= item.name %>
               </td>
               <td>
-                <%= item.price*1.08.to_s(:delimited) %>
+                <%= "#{(item.price*1.08).floor.to_s(:delimited)}" %>
               </td>
               <td>
                 <%= form_with model: cart_item, url: "/cart_items/#{cart_item.id}", local:true do |f| %>
@@ -34,7 +35,7 @@
                 <% end %>
               </td>
               <td>
-                <% total += subamount = item.price*1.08*cart_item.amount %>
+                <% total += subamount = item.price*1.08.floor*cart_item.amount %>
                 <%= "#{subamount.to_s(:delimited)}" %>
               </td>
               <td>

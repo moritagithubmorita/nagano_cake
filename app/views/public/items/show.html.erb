@@ -1,15 +1,22 @@
 <div class="container">
   <div class="row">
+
+    <% if @cart_item.errors.any? %>
+        <%= render partial: 'admin/errors/error', locals: {model: @cart_item} %>
+    <% end %>
+
     <div class="col-lg-4">
-      <%= attachment_image_tag @item, :image %>
+      <%= attachment_image_tag @item, :image, :fill, 40, 40, fallback: 'no_image.png', size: '40x40' %>
     </div>
     <div class="col-lg-6">
       <h2><%= @item.name %></h2>
       <p><%= @item.introduction %></p>
-      <label><%= "#{number_to_currency(@item.price*1.08, format: "%u%n", unit: "¥")}" %>()</label>
+      <label><%= "#{number_to_currency(@item.price*1.08.floor, format: "%u%n", unit: "¥", precision: 0)}" %>(税込)</label>
       <div>
-        <%= form_with model: CartItem.new, url: '/cart_items', local:true do |f| %>
+        <%= form_with model: @cart_item, url: '/cart_items', local:true do |f| %>
           <%= f.select :amount, [[1,1],[2,2],[3,3],[4,4],[5,5]] %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.hidden_field :customer_id, value: current_customer.id %>
           <%= f.submit 'カートに入れる' %>
         <% end %>
       </div>

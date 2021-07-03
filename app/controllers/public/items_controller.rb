@@ -1,15 +1,16 @@
 class Public::ItemsController < ApplicationController
   skip_before_action :authenticate_customer!
-  
+
   def index
     @title = '商品一覧'
     @items = Item.all.order("id DESC").page(params[:page]).per(8)
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item=Item.find(params[:id])
+    @cart_item = CartItem.new
   end
-  
+
   def search
     key = params[:search]
     if key
@@ -19,7 +20,7 @@ class Public::ItemsController < ApplicationController
       @items = Item.all.order("id DESC").page(params[:page]).per(8)
       @title = "商品一覧"
     end
-    
+
     render :index
   end
 end

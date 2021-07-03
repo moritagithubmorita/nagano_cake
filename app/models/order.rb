@@ -3,5 +3,7 @@ class Order < ApplicationRecord
   enum payment: {credit: 0, bank: 1}
   belongs_to :customer
   has_many :order_items
-  
+
+  validates :postal_code, :address, :name, :billing_amount, :order_status, :shipping_cost, :payment, :customer_id, presence: true
+
 end

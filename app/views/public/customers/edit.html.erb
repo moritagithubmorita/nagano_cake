@@ -5,7 +5,7 @@
       <table class="table table-striped">
         
         <% if @edited_customer.errors.any? %>
-        <%= render 'admin/errors/error', locals: {model: @edited_customer} %>
+        <%= render partial: 'admin/errors/error', locals: {model: @edited_customer} %>
         <% end %>
         
         <%= form_with model: current_customer, url: '/customers', local:true do |f| %>

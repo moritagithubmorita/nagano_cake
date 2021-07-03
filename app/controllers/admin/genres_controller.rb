@@ -1,9 +1,14 @@
 class Admin::GenresController < ApplicationController
+  skip_before_action :authenticate_customer!
+  before_action :authenticate_admin!
+
   def index
+    @generated_genre = Genre.new
     @genre = Genre.new
   end
 
   def edit
+    @generated_genre = Genre.new
     @genre = Genre.find(params[:id])
   end
 

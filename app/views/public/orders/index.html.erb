@@ -34,7 +34,7 @@
                 <% end %>
               </td>
               <td>
-                <%= "#{number_to_currency(order.billing_amount, format: "%u%n", unit: "¥")}" %>
+                <%= "#{number_to_currency(order.billing_amount, format: "%u%n", unit: "¥", precision: 0)}" %>
               </td>
               <td><%= order.enum_i18n(:order_status) %></td>
               <td><%= link_to '表示する', order_path(order.id) %></td>

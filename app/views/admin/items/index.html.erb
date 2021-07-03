@@ -3,7 +3,7 @@
     <div class="col-lg-10 mx-auto">
       <h2>商品一覧</h2>
       <%= button_to "+", new_admin_item_path, method: :get, class:"btn btn-primary rounded-circle p-0" %>
-      
+
       <table class="table table-striped">
         <thead>
           <tr>
@@ -19,8 +19,8 @@
             <tr>
               <td><%= item.id %></td>
               <td><%= link_to item.name, admin_item_path(item.id) %></td>
-              <td><%= item.price %></td>
-              <td><%= Genre.find(item.genre_id) %></td>
+              <td><%= "#{item.price.to_s(:delimited)}" %></td>
+              <td><%= "#{Genre.find(item.genre_id).name}" %></td>
               <td>
                 <% if item.is_active %>
                   <label>販売中</label>
@@ -32,7 +32,7 @@
           <% end %>
         </tbody>
       </table>
-      
+
     </div>
     <%= paginate @items %>
   </div>

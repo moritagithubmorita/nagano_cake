@@ -3,6 +3,14 @@ Rails.application.routes.draw do
   root to: "public/homes#top"
   get '/about' => "public/homes#about"
 
+  delete 'cart_items/remove_all' => "public/cart_items#remove_all"
+
+  post 'orders/confirm' => "public/orders#confirm"
+  get 'orders/thanks' => "public/orders#thanks"
+
+  get 'customers/confirm' => "public/customers#confirm"
+  patch 'customers/withdraw' => "public/customers#widhdraw"
+
   scope module: :public do
     resources :addresses, except: [:new, :show]
     resources :orders, except: [:destroy, :update, :edit]
@@ -10,14 +18,6 @@ Rails.application.routes.draw do
     resource :customers, only: [:show, :edit, :update]
     resources :items, only: [:index, :show]
   end
-
-  post 'orders/confirm' => "public/orders#confirm"
-  get 'orders/thanks' => "public/orders#thanks"
-
-  delete 'cart_items/remove_all' => "public/cart_items#remove_all"
-
-  get 'customers/confirm' => "public/customers#confirm"
-  patch 'customers/withdraw' => "public/customers#widhdraw"
 
   devise_for :customers, :controllers => {
     :sessions => 'public/sessions',
@@ -28,6 +28,11 @@ Rails.application.routes.draw do
     :sessions => 'admin/sessions'
   }
 
+  get '/admin' => "admin/homes#top"
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/search' => "public/items#search", as: 'search'
+
   namespace :admin do
     resources :items, except: [:destroy]
     resources :genres, except: [:show, :destroy, :new]
@@ -36,8 +41,4 @@ Rails.application.routes.draw do
     resources :order_items, only: [:update]
   end
 
-  get '/admin' => "admin/homes#top"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  get '/search' => "public/items#search", as: 'search'
 end

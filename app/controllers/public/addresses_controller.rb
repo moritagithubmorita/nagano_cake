@@ -1,16 +1,18 @@
 class Public::AddressesController < ApplicationController
   def index
+    @added_address = Address.new  #エラー用
     @address = Address.new
     @addresses = current_customer.addresses.all
   end
 
   def edit
+    @edited_address = Address.new
     @address = Address.find(params[:id])
   end
 
   def create
     @added_address = Address.new(address_params)
-    @added_address = address.customer_id = current_customer.id
+    @added_address.customer_id = current_customer.id
     if @added_address.save
       redirect_to addresses_path
     else

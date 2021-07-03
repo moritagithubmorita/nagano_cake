@@ -2,8 +2,13 @@
   <div class="row">
     <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
     <div class="col-lg-10">
+
+      <% if @customer.errors.any? %>
+        <%= render partial: 'admin/errors/error', locals: {model: @customer} %>
+      <% end %>
+
+      <%= form_with model: @customer, url: "/admin/customers/#{@customer.id}", local:true do |f| %>
       <table class="table table-striped">
-        <%= form_with model: @customer, url: "/admin/customers/#{@customer.id}", local:true do |f| %>
           <tr>
             <td>会員ID</td>
             <td><%= @customer.id %></td>
@@ -38,9 +43,10 @@
           </tr>
           <tr>
             <td colspan="1"></td>
-            <td><%= f.submit '変更を保存', class: %></td>
+            <td><%= f.submit '変更を保存', class:"form-control" %></td>
           </tr>
       </table>
+      <% end %>
     </div>
   </div>
 </div>
