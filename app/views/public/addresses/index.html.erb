@@ -2,26 +2,26 @@
   <div class="row">
     <h2>配送先登録/一覧</h2>
     <div class="col-lg-10">
-      
+
       <% if @added_address.errors.any? %>
         <%= render partial: 'admin/errors/error', locals: {model: @added_address} %>
       <% end %>
-      
+
       <%= form_with model: @address, url: '/addresses', local:true do |f| %>
       <table class="table table-striped">
         <tr>
           <td>郵便番号(ハイフンなし)</td>
-          <td><%= f.text_field :postal_code %></td>
+          <td><%= f.text_field :postal_code, placeholder: '0000000', class:'form-control' %></td>
           <td></td>
         </tr>
         <tr>
           <td>住所</td>
-          <td><%= f.text_field :address %></td>
+          <td><%= f.text_field :address, placeholder: '東京都渋谷区代々木神園町0-0', class:'form-control' %></td>
           <td></td>
         </tr>
         <tr>
           <td>宛名</td>
-          <td><%= f.text_field :name %></td>
+          <td><%= f.text_field :name, placeholder: '令和道子', class:'form-control' %></td>
           <td><%= f.submit '新規登録' %></td>
         </tr>
       </table>

@@ -5,10 +5,11 @@ class Public::SearchsController < ApplicationController
     search(params[:key])
   end
 
+  #検索
   def search(key)
-    #検索はpublic、adminともにできる。ということはpublic/adminで検索対象を変えないといけない
+    #検索はpublic、adminともにできる。ということはadminかそれ以外かで検索対象を変えないといけない
     #検索対象テーブルは以下の通り
-    #public...genre(アイテムを取得)、item
+    #非admin...genre(アイテムを取得)、item
     #admin...genre(アイテム取得)、item、customer
     #以下の「@~」は全て未取得の場合「.count」が0になる。それをviewで利用する
     if !admin_signed_in?

@@ -26,7 +26,7 @@
                 <%= item.name %>
               </td>
               <td>
-                <%= "#{(item.price*1.08).floor.to_s(:delimited)}" %>
+                <%= "#{((item.price)*1.08).floor.to_s(:delimited)}" %>
               </td>
               <td>
                 <%= form_with model: cart_item, url: "/cart_items/#{cart_item.id}", local:true do |f| %>
@@ -35,7 +35,7 @@
                 <% end %>
               </td>
               <td>
-                <% total += subamount = item.price*1.08.floor*cart_item.amount %>
+                <% total += subamount = (((item.price)*1.08).floor)*(cart_item.amount) %>
                 <%= "#{subamount.to_s(:delimited)}" %>
               </td>
               <td>

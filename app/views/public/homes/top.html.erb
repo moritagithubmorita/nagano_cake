@@ -22,7 +22,7 @@
                 <%= attachment_image_tag item, :image, :fill, 40, 40, fallback: 'no_image.png', size: '40x40', class:"card-img-top" %>
                 <p class="card-text">
                   <%= item.name %><br>
-                  <%= "#{number_to_currency(item.price*1.08.floor, unit: "¥", precision: 0)}" %>
+                  <%= "#{number_to_currency((item.price*1.08).floor, unit: "¥", precision: 0)}" %>
                 </p>
               </div>
             </div>

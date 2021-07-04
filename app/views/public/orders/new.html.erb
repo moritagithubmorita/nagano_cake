@@ -26,15 +26,15 @@
           <table class="table table-striped">
             <tr>
               <td>郵便番号(ハイフンなし)</td>
-              <td><%= f.text_field :postal_code, class:"form-control" %></td>
+              <td><%= f.text_field :postal_code, placeholder: '0000000', class:"form-control" %></td>
             </tr>
             <tr>
               <td>住所</td>
-              <td><%= f.text_field :address, class:"form-control" %></td>
+              <td><%= f.text_field :address, placeholder: '東京都渋谷区代々木神園町0-0', class:"form-control" %></td>
             </tr>
             <tr>
               <td>宛名</td>
-              <td><%= f.text_field :name, class:"form-control" %></td>
+              <td><%= f.text_field :name, placeholder: '令和道子', class:"form-control" %></td>
             </tr>
           </table>
         </div>

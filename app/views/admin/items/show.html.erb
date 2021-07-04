@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <label>商品詳細</label>
+    <h2>商品詳細</h2>
     <div class="col-lg-3">
       <%= attachment_image_tag @item, :image, :fill, 40, 40, fallback: 'no_image.png', size: '40x40' %>
     </div>
@@ -20,8 +20,8 @@
         </tr>
         <tr>
           <td>税込価格<br>(税抜価格)</td>
-          <% tax = @item.price*1.08.floor %>
-          <td><%= "#{number_to_currency(tax, format: "%u%n", unit: "¥", precision: 0)}" %></td>
+          <% tax = ((@item.price)*1.08).floor %>
+          <td><%= "#{tax.to_s(:delimited)}(#{(@item.price).to_s(:delimited)})円" %></td>
         </tr>
         <tr>
           <td>販売ステータス</td>

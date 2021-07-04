@@ -1,4 +1,12 @@
 class Public::AddressesController < ApplicationController
+  before_action :check_login_customer, only: :edit
+  
+  def check_login_customer
+    if current_customer.id != Address.find(params[:id]).customer_id
+      redirect_to addresses_path
+    end
+  end
+  
   def index
     @added_address = Address.new  #エラー用
     @address = Address.new

@@ -8,7 +8,7 @@
             <th>注文日</th>
             <th>配送先</th>
             <th>注文商品</th>
-            <th>支払い金額</th>
+            <th>支払金額</th>
             <th>ステータス</th>
             <th>注文詳細</th>
           </tr>
@@ -34,7 +34,7 @@
                 <% end %>
               </td>
               <td>
-                <%= "#{number_to_currency(order.billing_amount, format: "%u%n", unit: "¥", precision: 0)}" %>
+                <%= "#{number_to_currency(order.billing_amount, locale: 'ja')}" %>
               </td>
               <td><%= order.enum_i18n(:order_status) %></td>
               <td><%= link_to '表示する', order_path(order.id) %></td>

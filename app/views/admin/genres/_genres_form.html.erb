@@ -1,7 +1,7 @@
   <div>
     <%= form_with model: genre, url: url, local: true do |f| %>
       <%= f.label 'ジャンル名' %>
-      <%= f.text_field :name %>
-      <%= f.submit text %>
+      <%= f.text_field :name, placeholder: 'ジャンル名', class:'form-control' %>
+      <%= f.submit text, class:"form-control" %>
     <% end %>
   </div>

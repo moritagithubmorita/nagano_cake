@@ -17,10 +17,12 @@
             <tr>
               <% item = Item.find(cart_item.item_id) %>
               <td><%= attachment_image_tag item, :image, :fill, 40, 40, fallback: 'no_image.png', size: '40x40' %><%= item.name %></td>
+              <% tax = ((item.price)*1.08).floor %>
+              <td><%= "#{tax.to_s(:delimited)}" %></td>
               <td><%= cart_item.amount %></td>
               <td>
-                <% total += ((item.price*1.08)*(cart_item.amount)).floor %>
-                <%= "#{((item.price*1.08)*(cart_item.amount)).floor.to_s(:delimited)}" %></td>
+                <% total += tax*(cart_item.amount) %>
+                <%= "#{(tax*(cart_item.amount)).floor.to_s(:delimited)}" %></td>
             </tr>
           <% end %>
         </tbody>

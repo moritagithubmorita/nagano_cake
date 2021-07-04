@@ -1,6 +1,7 @@
 class Public::OrdersController < ApplicationController
   #カートに商品がひとつもない時、注文情報を入力できないようにする
   before_action :cart_is_empty, if: :is_cart_empty, only: :new
+  before_action :check_login_customer, only: :show
 
   SHIPPING_COST=800 #送料
 
@@ -15,6 +16,12 @@ class Public::OrdersController < ApplicationController
   def cart_is_empty
     flash[:alert] = 'カートが空です。'
     redirect_to cart_items_path
+  end
+  
+  def check_login_customer
+    if current_customer.id != Order.find(params[:id]).customer_id
+      redirect_to orders_path
+    end
   end
 
   def new
@@ -41,10 +48,9 @@ class Public::OrdersController < ApplicationController
     #請求金額
     @cart_items.each do |cart_item|
       item = Item.find(cart_item.item_id)
-      billing_amount += ((item.price*1.08)*(cart_item.amount)).floor
+      billing_amount += (((item.price)*1.08).floor)*(cart_item.amount)
     end
     billing_amount+=SHIPPING_COST
-    billing_amount = billing_amount.floor
 
     case params[:order][:selected_address]
       #ご自身の住所
