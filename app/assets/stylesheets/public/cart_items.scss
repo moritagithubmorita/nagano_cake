@@ -1,3 +1,45 @@
 // Place all the styles related to the public/cart_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.pci-index-title{
+  padding: 5px;
+}
+
+.pci-index-remove-all{
+}
+
+#pci-index-h2{
+  display: inline-block;
+  font-size: 1.5rem;
+  margin: 25px 0 25px 0;
+  background-color: rgba(200,200,200,0.5);
+}
+
+.pci-index-table-image{
+  .image{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+}
+
+.pci-index-table td, .pci-index-table th{
+  border: 2px solid black !important;
+  vertical-align: middle !important;
+}
+
+#pci-index-main-table th{
+  width: 10vw;
+}
+
+#pci-index-main-table-name-th{
+  width: 30vw !important;
+}
+
+#pci-index-sub-table th, #pci-index-sub-table td{
+  width: 10vw;
+}
+
+.pci-order-link{
+  margin-bottom: 10vh;
+}

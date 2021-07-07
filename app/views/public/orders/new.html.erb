@@ -1,44 +1,61 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <h2>注文情報入力</h2>
-    <div class="col-lg-10">
+    <div class="col-lg-10 px-5 py-2">
 
       <% if @order.errors.any? %>
         <%= render partial: 'admin/errors/error', locals: {model: @order} %>
       <% end %>
 
-      <%= form_with model: @order, url: orders_confirm_path, local:true, method: :post do |f| %>
-        <div>
-          <label>支払い方法</label>
-          <%= f.radio_button :payment, 0, class:"form-control", checked: true %><label>クレジットカード</label>
-          <%= f.radio_button :payment, 1, class:"form-control" %><label>銀行振込</label>
+      <%= form_with model: @order, url: orders_confirm_path, local:true, method: :post, class:"form-horizontal" do |f| %>
+        <div class="row">
+          <div class="col-lg-10">
+            <label><strong>支払い方法</strong></label>
+            <div class="form-inline ml-5">
+              <%= f.radio_button :payment, 0, class:"form-control", checked: true %><label>クレジットカード</label>
+            </div>
+            <div class="form-inline ml-5">
+              <%= f.radio_button :payment, 1, class:"form-control" %><label>銀行振込</label>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>お届け先</label>
-          <%= f.radio_button :selected_address, 0, class:"form-control", checked: true %><label>ご自身の住所</label><br>
-          <%= current_customer.address %><br>
-          <%= current_customer.last_name %><%= current_customer.first_name %><br>
+        <div class="row">
+          <div class="col-lg-10">
+            <label><strong>お届け先</strong></label>
+            <div class="form-inline ml-5">
+              <%= f.radio_button :selected_address, 0, class:"form-control", checked: true %><label>ご自身の住所</label>
+            </div>
+            <p class="ml-5 pl-5">
+              〒<%= current_customer.postal_code %> <%= current_customer.address %><br>
+              <%= current_customer.last_name %><%= current_customer.first_name %>
+            </p>
+            <div class="form-inline ml-5">
+              <%= f.radio_button :selected_address, 1, disabled: current_customer.addresses.empty?, class:"form-control" %><label>登録済住所から選択</label>
+            </div>
+            <div class="ml-5"><%= f.select :address_name_hash, @address_name_hash, {disabled: current_customer.addresses.empty? }, {class:"form-control ml-5" } %></div>
 
-          <%= f.radio_button :selected_address, 1, disabled: current_customer.addresses.empty?, class:"form-control" %><label>登録済住所から選択</label><br>
-          <%= f.select :address_name_hash, @address_name_hash, {disabled: current_customer.addresses.empty? }, {class:"form-control" } %><br>
-
-          <%= f.radio_button :selected_address, 2, class:"form-control" %><label>新しいお届け先</label>
-          <table class="table table-striped">
-            <tr>
-              <td>郵便番号(ハイフンなし)</td>
-              <td><%= f.text_field :postal_code, placeholder: '0000000', class:"form-control" %></td>
-            </tr>
-            <tr>
-              <td>住所</td>
-              <td><%= f.text_field :address, placeholder: '東京都渋谷区代々木神園町0-0', class:"form-control" %></td>
-            </tr>
-            <tr>
-              <td>宛名</td>
-              <td><%= f.text_field :name, placeholder: '令和道子', class:"form-control" %></td>
-            </tr>
-          </table>
+            <div class="form-inline ml-5">
+              <%= f.radio_button :selected_address, 2, class:"form-control" %><label>新しいお届け先</label>
+            </div>
+            <div class="ml-5 pl-5">
+              <div class="form-group row">
+                <label class="col-lg-3">郵便番号(ハイフンなし)</label>
+                <%= f.text_field :postal_code, placeholder: '0000000', class:"form-control col-lg-3" %>
+              </div>
+              <div class="row form-group">
+                <label class="col-lg-3">住所</label>
+                <%= f.text_field :address, placeholder: '東京都渋谷区代々木神園町0-0', class:"form-control col-lg-7" %>
+              </div>
+              <div class="row form-group">
+                <label class="col-lg-3">宛名</label>
+                <%= f.text_field :name, placeholder: '令和道子', class:"form-control col-lg-3" %>
+              </div>
+            </div>
+          </div>
         </div>
-        <%= f.submit '確認画面へ進む', class:"form-control" %>
+        <div class="row">
+          <%= f.submit '確認画面へ進む', class:"form-control btn btn-info mx-auto col-lg-3" %>
+        </div>
       <% end %>
     </div>
   </div>

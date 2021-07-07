@@ -1,44 +1,54 @@
 <%#マイページ%>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <h2>マイページ</h2>
-    <div class="col-lg-10">
-      <label>会員情報</label>
-      <%= link_to '編集する', edit_customers_path %>
-      <table class="table table-striped">
+  </div>
+  <div class="row m-3">
+    <div class="col-lg-2">
+      <label><strong>会員情報</strong></label>
+      <%= link_to '編集する', edit_customers_path, class:"btn btn-success mx-3" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <table class="table table-bordered pc-show-table">
         <tr>
-          <td>氏名</td>
+          <td class="table-secondary col-lg-4">氏名</td>
           <td><label><%= current_customer.last_name %> <%= current_customer.first_name %></td>
         </tr>
         <tr>
-          <td>カナ</td>
+          <td class="table-secondary">カナ</td>
           <td><label><%= current_customer.last_name_kana %> <%= current_customer.first_name_kana %></label></td>
         </tr>
         <tr>
-          <td>郵便番号</td>
+          <td class="table-secondary">郵便番号</td>
           <td><%= current_customer.postal_code %></td>
         </tr>
         <tr>
-          <td>住所</td>
+          <td class="table-secondary">住所</td>
           <td><%= current_customer.address %></td>
         </tr>
         <tr>
-          <td>電話番号</td>
+          <td class="table-secondary">電話番号</td>
           <td><%= current_customer.telephone_number %></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
+          <td class="table-secondary">メールアドレス</td>
           <td><%= current_customer.email %></td>
         </tr>
       </table>
-      <table class="table table-striped">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <table class="table table-borderless">
         <tr>
-          <td>配送先</td>
-          <td><%= link_to '一覧を見る', addresses_path %></td>
+          <td class="col-lg-4"><strong>配送先</strong></td>
+          <td class="col-lg-8"><%= link_to '一覧を見る', addresses_path, class:"btn btn-info" %></td>
         </tr>
         <tr>
-          <td>注文履歴</td>
-          <td><%= link_to '一覧を見る', orders_path %></td>
+          <td><strong>注文履歴</strong></td>
+          <td><%= link_to '一覧を見る', orders_path, class:"btn btn-info" %></td>
         </tr>
       </table>
     </div>

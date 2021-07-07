@@ -1,3 +1,26 @@
 // Place all the styles related to the public/orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.po-confirm-table-th{
+  width: 10vw;
+}
+
+.po-confirm-table th, .po-confirm-table td{
+  border: 2px solid black !important;
+}
+
+.po-confirm-table{
+  .image{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+}
+
+.po-thanks-row{
+  height: 70vh;
+}
+
+.po-thanks-row p{
+  font-size: 3rem;
+}

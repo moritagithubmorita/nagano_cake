@@ -1,3 +1,18 @@
 // Place all the styles related to the public/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.pc-show-table td, .pc-show-table th{
+  border: 2px solid black !important;
+}
+
+.pc-confirm-section{
+  text-align: center;
+}
+
+.pc-confirm-row{
+  height: 70vh;
+}
+
+.pc-edit-c{
+  height: 70vh;
+}
