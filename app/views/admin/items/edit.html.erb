@@ -1,7 +1,9 @@
-<div class="container-fluid">
+<div class="container-fluid ai-edit-container">
   <div class="row">
     <h2>商品編集</h2>
-    <div class="col-lg-10">
+  </div>
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
 
       <% if @item.errors.any? %>
         <%= render partial: 'admin/errors/error', locals: {model: @item} %>

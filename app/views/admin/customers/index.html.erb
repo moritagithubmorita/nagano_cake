@@ -1,10 +1,12 @@
 <div class="container-fluid">
   <div class="row">
-    <label>会員一覧</label>
-    <div class="col-lg-10">
-      <table class="table table-striped">
+    <h2>会員一覧</h2>
+  </div>
+  <div class="row">
+    <div class="col-lg-9 mx-auto d-flex justify-content-center">
+      <table class="table">
         <thead>
-          <tr>
+          <tr class="table-secondary">
             <th>会員ID</th>
             <th>氏名</th>
             <th>メールアドレス</th>
@@ -16,19 +18,19 @@
               <td><%= link_to admin_customer_path(customer.id) do %><%= customer.last_name %><%= customer.first_name %><% end %></td>
               <td><%= customer.email %></td>
               <td>
-                <label>
-                  <% if customer.is_active %>
-                    有効
-                  <% else %>
-                    退会
-                  <% end %>
-                </label>
+                <% if customer.is_active %>
+                  <label class="ac-index-is-active-true">有効</label>
+                <% else %>
+                  <label class="ac-index-is-active-false">退会</label>
+                <% end %>
               </td>
             </tr>
           <% end %>
         </thead>
       </table>
     </div>
+  </div>
+  <div class="row justify-content-center">
     <%= paginate @customers %>
   </div>
 </div>

@@ -35,13 +35,13 @@
                       </div>
                     </div>
                   </li>
-                  <li class="nav-item border p-1 m-3"><%= link_to 'About', '/about' %></li>
-                  <li class="nav-item border p-1 m-3"><%= link_to '商品一覧', '/items' %></li>
-                  <li class="nav-item border p-1 m-3"><%= link_to '新規登録', '/customers/sign_up' %></li>
-                  <li class="nav-item border p-1 m-3"><%= link_to 'ログイン', '/customers/sign_in' %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to 'About', '/about' %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to '商品一覧', '/items' %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to '新規登録', '/customers/sign_up' %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to 'ログイン', '/customers/sign_in' %></li>
                 </ul>
               <% elsif admin_signed_in? %>
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto admin-nav-ul">
                   <li>
                     <div class="ml-auto m-3">
                       <label>検索</label>
@@ -53,11 +53,11 @@
                       </div>
                     </div>
                   </li>
-                  <li class="nav-item border p-1 m-3"><%= link_to '商品一覧', '/admin/items' %></li>
-                  <li class="nav-item border p-1 m-3"><%= link_to '会員一覧', '/admin/customers' %></li>
-                  <li class="nav-item border p-1 m-3"><%= link_to '注文履歴一覧', admin_path %></li>
-                  <li class="nav-item border p-1 m-3"><%= link_to 'ジャンル一覧', '/admin/genres' %></li>
-                  <li class="nav-item border p-1 m-3"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to '商品一覧', '/admin/items' %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to '会員一覧', '/admin/customers' %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to '注文履歴一覧', admin_path %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to 'ジャンル一覧', '/admin/genres' %></li>
+                  <li class="nav-item nav-link border p-1 m-3"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
                 </ul>
               <% else %>
                 <ul class="navbar-nav ml-auto">

@@ -12,6 +12,13 @@ class Public::SearchsController < ApplicationController
     #非admin...genre(アイテムを取得)、item
     #admin...genre(アイテム取得)、item、customer
     #以下の「@~」は全て未取得の場合「.count」が0になる。それをviewで利用する
+    if key==""
+      @genres=nil
+      @items=nil
+      @customers=nil
+      return
+    end
+
     if !admin_signed_in?
       genre_search(key)
       item_search(key)

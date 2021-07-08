@@ -1,11 +1,13 @@
-<div class="container-fluid">
+<div class="container-fluid ai-show-container">
   <div class="row">
     <h2>商品詳細</h2>
-    <div class="col-lg-3">
-      <%= attachment_image_tag @item, :image, :fill, 40, 40, fallback: 'no_image.png', size: '40x40' %>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-3 ai-show-image-col">
+      <%= attachment_image_tag @item, :image %>
     </div>
-    <div class="col-lg-7">
-      <table class="table table-striped">
+    <div class="col-lg-3">
+      <table class="table table-borderless">
         <tr>
           <td>商品名</td>
           <td><%= @item.name %></td>
@@ -27,16 +29,16 @@
           <td>販売ステータス</td>
           <td>
             <% if @item.is_active %>
-              <label>販売中</label>
+              <label class="ai-show-is-active-true">販売中</label>
             <% else %>
-              <label>売切れ</label>
+              <label class="ai-show-is-active-false">売切れ</label>
             <% end %>
           </td>
         </tr>
       </table>
     </div>
   </div>
-  <div class="row">
-    <%= link_to '編集する', edit_admin_item_path(params[:id]) %>
+  <div class="row my-5">
+    <%= link_to '編集する', edit_admin_item_path(params[:id]), class:"btn btn-success mx-auto col-lg-2" %>
   </div>
 </div>

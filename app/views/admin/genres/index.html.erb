@@ -1,23 +1,32 @@
-<div class="container-fluid">
+<div class="container-fluid ag-index-container">
   <div class="row">
-    <label>ジャンル一覧・追加</label>
-    <div class="col-lg-5">
+    <h2>ジャンル一覧・追加</h2>
+  </div>
+  <div class="row">
+    <div class="col-lg-10">
 
       <% if @generated_genre.errors.any? %>
         <%= render 'admin/errors/error', locals: {model: @generated_genre} %>
       <% end %>
-
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 ag-index-form-col">
       <%= render partial: 'genres_form', locals:{genre: @genre, url: '/admin/genres', text: '新規登録'} %>
-
-      <table class="table table-striped">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <table class="table">
         <thead>
-          <tr>
+          <tr class="table-secondary">
             <th>ジャンル</th>
+            <th></th>
           </tr>
           <% Genre.all.each do |genre| %>
             <tr>
               <td><%= genre.name %></td>
-              <td><%= link_to '編集する', edit_admin_genre_path(genre.id) %></td>
+              <td><%= link_to '編集する', edit_admin_genre_path(genre.id), class:"btn btn-success" %></td>
             </tr>
           <% end %>
         </thead>

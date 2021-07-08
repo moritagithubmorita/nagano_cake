@@ -2,11 +2,13 @@
   <div class="row">
     <div class="col-lg-8 mx-auto">
       <% if !@from_customer_show %>
-        <%= render partial: 'all_orders', locals:{orders: @orders} %> 
+        <%= render partial: 'all_orders', locals:{orders: @orders} %>
       <% else %>
         <%= render partial: 'customer_orders', locals:{orders: @orders, customer: @customer} %>
       <% end %>
     </div>
+  </div>
+  <div class="row justify-content-center">
     <%= paginate @orders %>
   </div>
 </div>

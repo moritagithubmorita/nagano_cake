@@ -1,12 +1,13 @@
 <div class="container-fluid">
+  <div class="row ai-index-title-row">
+    <h2>商品一覧</h2>
+    <%= link_to "+", new_admin_item_path, class:"ml-auto ai-index-add-button" %>
+  </div>
   <div class="row">
     <div class="col-lg-10 mx-auto">
-      <h2>商品一覧</h2>
-      <%= button_to "+", new_admin_item_path, method: :get, class:"btn btn-primary rounded-circle p-0" %>
-
-      <table class="table table-striped">
+      <table class="table mx-auto">
         <thead>
-          <tr>
+          <tr class="table-secondary">
             <th>商品ID</th>
             <th>商品名</th>
             <th>税抜価格</th>
@@ -23,9 +24,9 @@
               <td><%= "#{Genre.find(item.genre_id).name}" %></td>
               <td>
                 <% if item.is_active %>
-                  <label>販売中</label>
+                  <label class="ai-index-is-active-true">販売中</label>
                 <% else %>
-                  <label>売切れ</label>
+                  <label class="ai-index-is-active-false">売切れ</label>
                 <% end %>
               </td>
             </tr>
@@ -34,6 +35,10 @@
       </table>
 
     </div>
-    <%= paginate @items %>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @items %>
+    </div>
   </div>
 </div>

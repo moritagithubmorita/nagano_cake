@@ -1,3 +1,12 @@
 // Place all the styles related to the admin/genres controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.ag-index-container, .ag-edit-container{
+  height: 70vh;
+  padding-left: 5% !important;
+}
+
+.ag-index-form-col{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}

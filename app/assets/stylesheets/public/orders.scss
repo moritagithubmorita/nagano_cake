@@ -24,3 +24,13 @@
 .po-thanks-row p{
   font-size: 3rem;
 }
+
+.po-index-table th, .po-index-table td, .po-show-table th, .po-show-table td{
+  border: 2px solid black !important;
+  vertical-align: middle !important;
+}
+
+.po-show-container{
+  padding-left: 2% !important;
+  padding-right: 2% !important;
+}

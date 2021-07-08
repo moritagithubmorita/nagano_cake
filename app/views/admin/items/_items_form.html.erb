@@ -1,32 +1,31 @@
-<div>
-  <%= form_with model: item, url: url, local:true do |f| %>
-    <div class="form-group">
-      <%#幅を指定できるっぽいからそれぞれの幅を固定してしまう%>
-      <%= f.label "商品画像" %>
-      <%= f.attachment_field :image, class:"form-control" %>
+<div class="mx-auto">
+  <%= form_with model: item, url: url, local:true, class:"form-horizontal" do |f| %>
+    <div class="form-group row">
+      <label class="col-lg-3">商品画像</label>
+      <%= f.attachment_field :image %>
     </div>
-    <div class="form-group">
-      <%= f.label "商品名" %>
-      <%= f.text_field :name, placeholder: '商品名', class:"form-control" %>
+    <div class="form-group row">
+      <label class="col-lg-3">商品名</label>
+      <%= f.text_field :name, placeholder: '商品名', class:"form-control col-lg-7" %>
     </div>
-    <div class="form-group">
-      <%= f.label "商品説明" %>
-      <%= f.text_area :introduction, placeholder: 'ここに説明文を記述します', class:"form-control" %>
+    <div class="form-group row">
+      <label class="col-lg-3">商品説明</label>
+      <%= f.text_area :introduction, placeholder: 'ここに説明文を記述します', class:"form-control col-lg-7" %>
     </div>
-    <div class="form-group">
-      <%= f.label "ジャンル" %>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--", class:"form-control" %>
+    <div class="form-group row">
+      <label class="col-lg-3">ジャンル</label>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--", class:"form-control col-lg-7" %>
     </div>
-    <div class="form-group" >
-      <%= f.label "税抜価格" %>
-      <%= f.number_field :price, placeholder: '1000', class:"form-control" %><%= f.label "円" %>
+    <div class="form-group row" >
+      <label class="col-lg-3">税抜価格</label>
+      <%= f.number_field :price, placeholder: '1000', class:"form-control col-lg-7" %><label>円</label>
     </div>
-    <div class="form-group">
-      <%= f.label "販売ステータス" %>
-      <%= f.radio_button :is_active, true, checked: true %><%= f.label "販売中" %><%= f.radio_button :is_active, false %><%= f.label "売切れ" %>
+    <div class="form-group row form-inline">
+      <label class="col-lg-3 ai-form-is-active-label">販売ステータス</label>
+      <%= f.radio_button :is_active, true, checked: true %><label class="mx-1">販売中</label><%= f.radio_button :is_active, false %><label>売切れ</label>
     </div>
-    <div class="form-group">
-      <%= f.submit text %>
+    <div class="row">
+      <%= f.submit text, class:"mx-auto btn btn-success" %>
     </div>
   <% end %>
 </div>

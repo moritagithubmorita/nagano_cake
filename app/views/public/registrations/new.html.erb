@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-lg-8 registrations-form-col">
       <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class:"new_customer form-horizontal", local:true do |f| %>
-        <%#= render "public/shared/error_messages", resource: resource %>
+        <%= render "public/shared/error_messages", resource: resource %>
         <div class="form-group row">
           <label class="col-lg-3">名前</label>
           <label class="col-lg-1">(姓)</label>

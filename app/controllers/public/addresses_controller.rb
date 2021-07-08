@@ -1,14 +1,13 @@
 class Public::AddressesController < ApplicationController
   before_action :check_login_customer, only: :edit
-  
+
   def check_login_customer
     if current_customer.id != Address.find(params[:id]).customer_id
       redirect_to addresses_path
     end
   end
-  
+
   def index
-    @added_address = Address.new  #エラー用
     @address = Address.new
     @addresses = current_customer.addresses.all
   end
@@ -19,12 +18,11 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
-    @added_address = Address.new(address_params)
-    @added_address.customer_id = current_customer.id
-    if @added_address.save
+    @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
+    if @address.save
       redirect_to addresses_path
     else
-      @address = Address.new
       @addresses = current_customer.addresses.all
       render :index
     end

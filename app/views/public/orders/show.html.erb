@@ -1,15 +1,17 @@
-<div class="container-fluid">
+<div class="container-fluid po-show-container">
   <div class="row">
     <h2>注文履歴詳細</h2>
+  </div>
+  <div class="row">
     <div class="col-lg-6">
-      <label>注文情報</label>
-      <table class="table table-striped">
+      <label><strong>注文情報</strong></label>
+      <table class="table table-bordered po-show-table">
         <tr>
-          <td>注文日</td>
+          <td class="table-secondary">注文日</td>
           <td><%= l @order.created_at, format: :short %></td>
         </tr>
         <tr>
-          <td>配送先</td>
+          <td class="table-secondary">配送先</td>
           <td>
             <%= @order.postal_code %><br>
             〒<%= @order.address %><br>
@@ -17,7 +19,7 @@
           </td>
         </tr>
         <tr>
-          <td>支払い方法</td>
+          <td class="table-secondary">支払方法</td>
           <td>
             <% if @order.credit? %>
               <label>クレジットカード</label>
@@ -27,38 +29,40 @@
           </td>
         </tr>
         <tr>
-          <td>ステータス</td>
+          <td class="table-secondary">ステータス</td>
           <td><%= @order.enum_i18n(:order_status) %></td>
         </tr>
       </table>
     </div>
     <div class="col-lg-4">
-      <label>請求情報</label>
-      <table class="table table-striped">
+      <label><strong>請求情報</strong></label>
+      <table class="table table-bordered po-show-table">
         <tr>
-          <td>商品合計</td>
+          <td class="table-secondary">商品合計</td>
           <td><%= "#{(@order.billing_amount-@order.shipping_cost).to_s(:delimited)}" %></td>
         </tr>
         <tr>
-          <td>配送料</td>
+          <td class="table-secondary">配送料</td>
           <td><%= "#{@order.shipping_cost.to_s(:delimited)}" %></td>
         </tr>
         <tr>
-          <td>ご請求額</td>
-          <td><%= @order.billing_amount %></td>
+          <td class="table-secondary">ご請求額</td>
+          <td><%= "#{@order.billing_amount.to_s(:delimited)}" %></td>
         </tr>
       </table>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-8">
-      <label>注文内容</label>
-      <table class="table table-striped">
+      <label><strong>注文内容</strong></label>
+      <table class="table table-bordered po-show-table">
         <thead>
-          <th>商品</th>
-          <th>単価(税込)</th>
-          <th>個数</th>
-          <th>小計</th>
+          <tr class="table-secondary">
+            <th>商品</th>
+            <th>単価(税込)</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
         </thead>
         <tbody>
           <% @order.order_items.all.each do |order_item| %>

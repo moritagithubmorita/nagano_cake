@@ -21,6 +21,10 @@
    box-sizing: border-box;
  }
 
+.field_with_errors{
+ display: contents;
+}
+
  footer{
   height: 10vh;
  }
@@ -33,6 +37,10 @@
   text-align: center;
   width: 90px;
  }
+
+.admin-nav-ul .nav-item{
+ width: 110px;
+}
 
  .footer{
   height: 100px;
@@ -70,3 +78,7 @@
  .sessions-sign-up-link{
   margin-left: 20%;
  }
+
+.as-new-container{
+ height: 70vh;
+}

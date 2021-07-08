@@ -1,11 +1,13 @@
-<div class="container-fluid">
+<div class="container-fluid ac-show-container">
   <div class="row">
     <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
-    <div class="col-lg-10">
-      <table class="table table-striped">
+  </div>
+  <div class="row">
+    <div class="col-lg-7 ml-5 pl-5">
+      <table class="table table-borderless">
         <tr>
-          <td>会員ID</td>
-          <td><%= @customer.id %></td>
+          <td class="col-lg-4">会員ID</td>
+          <td class="col-lg-8"><%= @customer.id %></td>
         </tr>
         <tr>
           <td>氏名</td>
@@ -30,20 +32,22 @@
         <tr>
           <td>会員ステータス</td>
           <td>
-            <label>
-              <% if @customer.is_active %>
-                有効
-              <% else %>
-                退会
-              <% end %>
-            </label>
+            <% if @customer.is_active %>
+              <label class="ac-show-is-active-true">有効</label>
+            <% else %>
+              <label class="ac-show-is-active-false">退会</label>
+            <% end %>
           </td>
         </tr>
       </table>
-
-      <div>
-        <%= link_to '編集する', edit_admin_customer_path(customer_id: @customer.id) %>
-        <%= link_to '注文履歴一覧を見る', admin_path(customer_id: @customer.id) %>
+    </div>
+  </div>
+  <div class="row ml-5 mb-3 pl-5">
+    <div class="col-lg-7 ml-5">
+      <div class="row ml-5">
+        <%= link_to '編集する', edit_admin_customer_path(customer_id: @customer.id), class:"btn btn-success col-lg-2" %>
+        <label class="col-lg-2"></label>
+        <%= link_to '注文履歴一覧を見る', admin_path(customer_id: @customer.id), class:"btn btn-info col-lg-3" %>
       </div>
     </div>
   </div>

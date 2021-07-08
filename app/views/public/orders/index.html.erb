@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <h2>注文履歴一覧</h2>
-    <div class="col-lg-12">
-      <table class="table table-striped">
+    <div class="col-lg-11 mx-auto">
+      <table class="table table-bordered po-index-table">
         <thead>
-          <tr>
+          <tr class="table-secondary">
             <th>注文日</th>
             <th>配送先</th>
             <th>注文商品</th>
@@ -37,7 +37,7 @@
                 <%= "#{number_to_currency(order.billing_amount, locale: 'ja')}" %>
               </td>
               <td><%= order.enum_i18n(:order_status) %></td>
-              <td><%= link_to '表示する', order_path(order.id) %></td>
+              <td><%= link_to '表示する', order_path(order.id), class:"btn btn-info" %></td>
             </tr>
           <% end %>
         </tbody>

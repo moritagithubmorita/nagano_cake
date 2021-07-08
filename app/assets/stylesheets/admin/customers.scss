@@ -1,3 +1,19 @@
 // Place all the styles related to the admin/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.ac-index-is-active-true, .ac-show-is-active-true{
+  color: green;
+}
+
+.ac-index-is-active-false, .ac-show-is-active-false{
+  color: gray;
+}
+
+.ac-show-container{
+  height: 70vh;
+}
+
+.ac-edit-is-active-label{
+  display: inline !important;
+}
+

@@ -1,16 +1,28 @@
-<div class="container-fluid">
+<div class="container-fluid search-container">
   <div class="row">
-    <h2>検索結果</h2>
-    <div class="col-lg-10">
+    <% total = 0 %>
+    <% if @genres != nil %>
+      <% total+= @genres.count %>
+    <% end %>
+    <% if @items != nil %>
+      <% total+= @items.count %>
+    <% end %>
+    <% if @customers != nil %>
+      <% total+= @customers.count %>
+    <% end %>
+    <h2>検索結果(<%= "#{total}" %>件)</h2>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
       <% if @genres != nil && @genres.count != 0 %>
         <h3>ジャンル名一致</h3>
         <% @genres.each do |name, items| %>
           <label><%= name %></label>
-          <table class="table table-striped">
+          <table class="table mx-auto">
             <thead>
-              <tr>
-                <th>商品名</th>
-                <th>商品説明</th>
+              <tr class="table-secondary">
+                <th class="col-lg-4">商品名</th>
+                <th class="col-lg-8">商品説明</th>
               </tr>
             </thead>
             <tbody>
@@ -30,13 +42,17 @@
           </table>
         <% end %>
       <% end %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
       <% if @items != nil && @items.count != 0 %>
         <h3>商品名一致</h3>
-        <table class="table table-striped">
+        <table class="table mx-auto">
           <thead>
-            <tr>
-              <th>商品名</th>
-              <th>商品説明</th>
+            <tr class="table-secondary">
+              <th class="col-lg-4">商品名</th>
+              <th class="col-lg-8">商品説明</th>
             </tr>
           </thead>
           <tbody>
@@ -55,13 +71,17 @@
           </tbody>
         </table>
       <% end %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
       <% if admin_signed_in? && @customers != nil && @customers.count != 0%>
         <h3>会員名一致</h3>
-        <table class="table table-striped">
+        <table class="table mx-auto">
           <thead>
-            <tr>
-              <th>会員名</th>
-              <th>メールアドレス</th>
+            <tr class="table-secondary">
+              <th class="col-lg-4">会員名</th>
+              <th class="col-lg-8">メールアドレス</th>
             </tr>
           </thead>
           <tbody>

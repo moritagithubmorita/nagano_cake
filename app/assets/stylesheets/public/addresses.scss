@@ -1,3 +1,14 @@
 // Place all the styles related to the public/addresses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.pa-index-container{
+  padding: 3% !important;
+}
+
+.pa-index-table-row{
+  margin-top: 3%;
+}
+
+.pa-index-table th, .pa-index-table td{
+  border: 2px solid black !important;
+}
